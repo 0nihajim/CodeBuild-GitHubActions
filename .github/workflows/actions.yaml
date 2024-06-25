@@ -1,7 +1,16 @@
-name: Hello World
+name: ecr push image
 on: [push]
 jobs:
-  Hello-World-Job:
+  push:
     runs-on: codebuild-GitHubActionsRunner-Test-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
-      - run: echo "Hello World!"
+      - uses: aws-actions/amazon-ecr-login@v2
+        id: login-ecr 
+      - name: build and push docker image to ecr
+        env:
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          REPOSITORY: gha-push
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          docker build . --tag ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG }}
+          docker push ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG }}
