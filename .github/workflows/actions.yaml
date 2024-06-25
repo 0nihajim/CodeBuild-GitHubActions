@@ -13,7 +13,7 @@ jobs:
       - name: build and push docker image to ecr
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          REPOSITORY: nginx:
+          REPOSITORY: nginx
           IMAGE_TAG: latest
         run: |
           docker pull ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG }}
