@@ -4,4 +4,4 @@ jobs:
   push:
     runs-on: codebuild-GitHubActionsRunner-Test-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
-      - run: vi /etc/pki/tls/certs/ca-bundle.crt
+      - run: echo "hello"
