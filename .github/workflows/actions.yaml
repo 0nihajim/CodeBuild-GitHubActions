@@ -1,19 +1,8 @@
-name: ecr push image
-
+name: Hello World
 on: [push]
-
 jobs:
-  push:
-    runs-on: codebuild-GitHubActionsRunner-Test-${{ github.run_id }}-${{ github.run_attempt }}
-
+  Hello-World-Job:
+    runs-on: codebuild-myProject-${{ github.run_id }}-${{ github.run_attempt }}-${{ matrix.os }}
+    
     steps:
-      - uses: aws-actions/amazon-ecr-login@v2
-        id: login-ecr 
-
-      - name: build and push docker image to ecr
-        env:
-          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          REPOSITORY: nginx
-          IMAGE_TAG: latest
-        run: |
-          docker pull ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG }}
+      - run: vi /etc/pki/tls/certs/ca-bundle.crt
