@@ -29,8 +29,18 @@ else
     exit 1
 fi
 
+# Test 4: README.md summary functionality
+echo "Test 4: Testing README.md summary functionality..."
+python3 app.py --summarize-readme > readme_summary.txt
+if grep -q "Q Dev App" readme_summary.txt && grep -q "Key Features:" readme_summary.txt; then
+    echo "✓ README.md summary functionality test passed"
+else
+    echo "✗ README.md summary functionality test failed"
+    exit 1
+fi
+
 # Clean up
-rm test_output.txt
+rm test_output.txt readme_summary.txt
 
 echo "All tests passed successfully!"
 exit 0
