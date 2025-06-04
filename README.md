@@ -12,6 +12,7 @@ Q Dev App is a minimalist development environment designed for quick testing and
 - Fast startup and minimal resource usage
 - Easily customizable for different development needs
 - Suitable for CI/CD pipelines and local testing
+- README summarization functionality
 
 ## Getting Started
 
@@ -47,6 +48,16 @@ docker run -it q-dev-app python3 /app/app.py
 ```
 
 This will start an interactive demo application.
+
+### Summarizing README.md
+
+To get a summary of the README.md file, run:
+
+```
+docker run -it q-dev-app python3 /app/app.py --summarize-readme
+```
+
+This will display a concise summary of the README.md file, highlighting the key features and purpose of the application.
 
 ## Testing
 
